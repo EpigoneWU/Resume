@@ -1,23 +1,29 @@
+import { profile } from "../data/profile";
+
 export default function About() {
+  const s = profile.skills;
   return (
-    <section style={{display:'grid', gap:12}}>
-      <h2 style={{fontSize:24, fontWeight:800}}>About Me</h2>
-      <p>
-        I’m a Master’s student at QUT with a background in Healthcare IT, EHR/EMR, and Telehealth.
-        I enjoy building accessible, data-driven products with React & TypeScript.
-      </p>
+    <section style={{display:'grid', gap:16}}>
+      <h2 style={{fontSize:24, fontWeight:800}}>About</h2>
+      <div>
+        <h3 style={{fontWeight:700}}>Education</h3>
+        <ul style={{margin:'8px 0 0 18px'}}>
+          {profile.education.map(e => (
+            <li key={e.school}><strong>{e.school}</strong> — {e.degree} ({e.period}){e.gpa ? ` · ${e.gpa}` : ""}</li>
+          ))}
+        </ul>
+      </div>
+
       <div>
         <h3 style={{fontWeight:700}}>Skills</h3>
         <ul style={{margin:'8px 0 0 18px'}}>
-          <li>Frontend: React, TypeScript, Vite</li>
-          <li>Backend: Django / Node basics</li>
-          <li>Data/UX: Usability testing, Accessibility, Data viz</li>
+          <li><strong>Healthcare & Informatics:</strong> {s.healthcare.join(", ")}</li>
+          <li><strong>Programming & Tools:</strong> {s.programming.join(", ")}</li>
+          <li><strong>Data & Analytics:</strong> {s.data.join(", ")}</li>
+          <li><strong>Soft Skills:</strong> {s.soft.join(", ")}</li>
+          <li><strong>Languages:</strong> {s.languages.join(", ")}</li>
         </ul>
       </div>
-      <div>
-        <h3 style={{fontWeight:700}}>Education</h3>
-        <p>Queensland University of Technology — M.IT</p>
-      </div>
     </section>
-  )
+  );
 }

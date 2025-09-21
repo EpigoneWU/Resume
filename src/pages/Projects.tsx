@@ -1,26 +1,27 @@
-import ProjectCard from '../components/ProjectCard'
-import type { Project } from '../types'
+import ProjectCard from "../components/ProjectCard";
+import type { Project } from "../types";
+import { profile } from "../data/profile";
 
 const projects: Project[] = [
   {
-    title: 'Exploration App',
-    tech: ['React (web/mobile)', 'Leaflet', 'IndexedDB'],
-    description: 'Visualize historical mining data with offline capability and tenure overlays.',
-    link: 'https://github.com/your-org/exploration',
-    image: '/images/exploration.jpg'
+    title: "Exploration App",
+    tech: ["React (web)", "Leaflet", "IndexedDB"],
+    description: "Web-based data visualization platform; Agile/Scrum with client features.",
+    link: profile.github
   },
   {
-    title: 'EmotionBridge',
-    tech: ['Django', 'HTMX', 'Tailwind'],
-    description: 'Well-being journaling app with accessibility and multilingual UI.',
-    link: 'https://github.com/your-org/emotionbridge'
+    title: "Emotional Wellbeing App",
+    tech: ["UX Research", "Accessibility", "Usability Testing"],
+    description: "Improved accessibility and emotional engagement for international students.",
+    link: profile.github
   },
   {
-    title: 'Resume Website',
-    tech: ['Vite', 'React', 'gh-pages'],
-    description: 'This online resume with GitHub Pages deployment.',
+    title: "Fitness Tracking App",
+    tech: ["Cross-platform", "Privacy & Security"],
+    description: "Exercise, meditation, history tracking; healthcare privacy principles.",
+    link: profile.github
   }
-]
+];
 
 export default function Projects() {
   return (
@@ -30,5 +31,5 @@ export default function Projects() {
         {projects.map(p => <ProjectCard key={p.title} {...p} />)}
       </div>
     </section>
-  )
+  );
 }
