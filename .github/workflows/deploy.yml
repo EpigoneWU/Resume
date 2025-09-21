@@ -35,7 +35,6 @@ jobs:
         run: |
           npm run build
           npm run postbuild
-          cp dist/index.html dist/404.html || echo "skip 404 copy"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
