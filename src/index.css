@@ -54,6 +54,21 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* 斷點/寬度策略：最窄 320px 起、理想閱讀寬度 ~ 72rem、最大不超過視窗 92% */
+:root {
+  --wrap-min: 320px;          /* 最小內容寬 */
+  --wrap-ideal: 72rem;        /* 理想最大寬（約 1152px，可改 68–80rem 區間） */
+  --wrap: clamp(var(--wrap-min), 92vw, var(--wrap-ideal));
+}
+
+.container-wrap { 
+  width: min(var(--wrap), 92vw); 
+  margin-inline: auto; 
+  padding-inline: clamp(12px, 4vw, 24px); /* 邊距也隨視窗調整 */
+}
+.section { padding-block: clamp(32px, 6vw, 56px); }
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

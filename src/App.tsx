@@ -11,7 +11,8 @@ export default function App() {
   return (
     <div className="app-root" style={{minHeight:'100svh', display:'flex', flexDirection:'column'}}>
       <Header />
-      <main className="flex-grow container mx-auto p-4">
+      <main className="flex-1">
+        <div className="container-wrap section">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/experience" element={<Experience />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
+        </div>
       </main>
       <Footer />
     </div>
