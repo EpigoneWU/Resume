@@ -9,7 +9,7 @@ import Contact from "./pages/Contact";
 
 export default function App() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="app-root" style={{minHeight:'100svh', display:'flex', flexDirection:'column'}}>
       <Header />
       <main className="flex-grow container mx-auto p-4">
         <Routes>

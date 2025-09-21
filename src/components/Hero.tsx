@@ -1,20 +1,13 @@
 export default function Hero() {
   return (
-    <div className="text-center py-12">
-      <img
-        src="/profile.jpg"
-        alt="Profile"
-        className="w-32 h-32 mx-auto rounded-full shadow-lg"
-      />
-      <h2 className="mt-4 text-2xl font-bold">Epigone Wu</h2>
-      <p className="text-gray-500">Software Engineer | Healthcare IT | React & TypeScript</p>
-      <a
-        href="/resume.pdf"
-        download
-        className="mt-6 inline-block px-6 py-2 bg-blue-600 text-white rounded-lg"
-      >
-        Download Resume (PDF)
-      </a>
-    </div>
-  );
+    <section style={{textAlign:'center', padding:'28px 0 8px'}}>
+      <img src="/profile.jpg" alt="Profile" style={{width:112, height:112, borderRadius:'9999px', objectFit:'cover', margin:'0 auto', boxShadow:'0 6px 24px rgba(0,0,0,.12)'}} />
+      <h1 style={{marginTop:16, fontSize:28, fontWeight:800}}>Epigone Wu</h1>
+      <p style={{color:'#6b7280'}}>Healthcare IT · React · TypeScript · UX</p>
+      <div style={{marginTop:16, display:'flex', gap:12, justifyContent:'center'}}>
+        <a href="/resume.pdf" download style={{padding:'10px 14px', borderRadius:10, background:'#2563eb', color:'#fff', textDecoration:'none'}}>Download PDF</a>
+        <a href="mailto:you@example.com" style={{padding:'10px 14px', borderRadius:10, border:'1px solid #e5e7eb', textDecoration:'none', color:'#111827'}}>Contact Me</a>
+      </div>
+    </section>
+  )
 }
