@@ -1,39 +1,50 @@
+/* =========================
+   Base & Theme
+   ========================= */
 :root {
+  /* 字體與渲染 */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* 顏色模式（瀏覽器自動判斷） */
+  color-scheme: light dark;
+
+  /* 佈局常數（請與 Header/Footer 高度一致） */
+  --header-h: 64px;
+  --footer-h: 48px;
+
+  /* 流體容器寬度策略 */
+  --wrap-min: 320px;    /* 最小內容寬 */
+  --wrap-ideal: 72rem;  /* 理想最大寬（約 1152px，可調 68–80rem） */
+  --wrap: clamp(var(--wrap-min), 92vw, var(--wrap-ideal));
 }
 
+html {
+  /* 一頁式平滑捲動 */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  /* 別用 display:flex + place-items:center，會讓整頁被置中 */
+  background-color: #a18ff9;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+/* 連結與按鈕（維持你原本的風格） */
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+a:hover { color: #535bf2; }
 
 button {
   border-radius: 8px;
@@ -42,42 +53,53 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #070606;
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
+button:hover { border-color: #646cff; }
 button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+button:focus-visible { outline: 4px auto -webkit-focus-ring-color; }
 
-/* 斷點/寬度策略：最窄 320px 起、理想閱讀寬度 ~ 72rem、最大不超過視窗 92% */
-:root {
-  --wrap-min: 320px;          /* 最小內容寬 */
-  --wrap-ideal: 72rem;        /* 理想最大寬（約 1152px，可改 68–80rem 區間） */
-  --wrap: clamp(var(--wrap-min), 92vw, var(--wrap-ideal));
-}
+h1 { font-size: 3.2em; line-height: 1.1; }
 
-.container-wrap { 
-  width: min(var(--wrap), 92vw); 
-  margin-inline: auto; 
-  padding-inline: clamp(12px, 4vw, 24px); /* 邊距也隨視窗調整 */
-}
-.section { padding-block: clamp(32px, 6vw, 56px); }
-
-
+/* 亮色模式覆蓋（保留你原設定） */
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  :root { color: #ffffff; background-color: #b32222; }
+  a:hover { color: #747bff; }
+  button { background-color: #1f0a6e; }
+}
+
+/* =========================
+   Layout Helpers
+   ========================= */
+
+/* 流體容器：滿版背景 + 置中內容 */
+.container-wrap {
+  width: min(var(--wrap), 92vw);
+  margin-inline: auto;
+  padding-inline: clamp(12px, 4vw, 24px);
+}
+
+/* 區塊上下間距（各 section 共享） */
+.section { 
+  padding-block: clamp(32px, 6vw, 56px);
+}
+
+/* main 區域預留固定 Header 與 Footer 的高度 */
+main {
+  padding-top: var(--header-h);
+  padding-bottom: var(--footer-h);
+}
+
+/* 一頁式錨點：避免被固定 Header/ Footer 蓋住 */
+.section-anchor {
+  scroll-margin-top: var(--header-h);
+  scroll-margin-bottom: var(--footer-h);
+}
+
+/* 簡易導覽高亮（若用 hash 方式） */
+a.active-nav {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
 }

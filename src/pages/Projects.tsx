@@ -25,10 +25,12 @@ const projects: Project[] = [
 
 export default function Projects() {
   return (
-    <section style={{display:'grid', gap:16}}>
-      <h2 style={{fontSize:24, fontWeight:800}}>Projects</h2>
-      <div style={{display:'grid', gap:16, gridTemplateColumns:'repeat(auto-fit, minmax(260px, 1fr))'}}>
-        {projects.map(p => <ProjectCard key={p.title} {...p} />)}
+    <section id="projects" className="section-anchor w-screen bg-sand-50">
+      <div className="container-wrap section" style={{display:'grid', gap:16}}>
+        <h2 style={{fontSize:24, fontWeight:800}}>Projects</h2>
+        <div style={{display:'grid', gap:16, gridTemplateColumns:'repeat(auto-fit, minmax(260px, 1fr))'}}>
+          {projects.map(p => <ProjectCard key={p.title} {...p} />)}
+        </div>
       </div>
     </section>
   );

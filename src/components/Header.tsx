@@ -1,25 +1,53 @@
-import { Link, NavLink } from "react-router-dom";
-import { profile } from "../data/profile";
+// src/components/Header.tsx
+import { useCallback } from 'react';
+import { profile } from '../data/profile';
 
-const linkStyle: React.CSSProperties = { padding: '8px 10px', borderRadius: 8 };
-const activeStyle: React.CSSProperties = { background: 'rgba(0,0,0,.08)' };
+const SECTIONS = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'contact', label: 'Contact' },
+];
+
+// 輕量版：用 hash + CSS :target 高亮（不依賴 router / observer）
+function useJump() {
+  return useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', `#${id}`);
+  }, []);
+}
 
 export default function Header() {
+  const onJump = useJump();
+
+  const linkStyle: React.CSSProperties = { padding: '8px 10px', borderRadius: 8, textDecoration: 'none', color:'#111827' };
+
   return (
-    <header style={{borderBottom:'1px solid #e5e7eb', background:'#fff'}}>
-      <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', width:'min(1100px, 92%)', margin:'0 auto', padding:'12px 0'}}>
-        <Link to="/" style={{fontWeight:800, fontSize:18}}>{profile.name}</Link>
+    <header
+      style={{
+        position:'fixed', top:0, left:0, right:0, zIndex:50,
+        height:'var(--header-h)', borderBottom:'1px solid #e5e7eb',
+        background:'rgba(255,255,255,.8)', backdropFilter:'saturate(180%) blur(8px)'
+      }}
+    >
+      <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', width:'min(1100px, 92%)', margin:'0 auto', height:'100%'}}>
+        <a href="#home" onClick={(e)=>onJump(e,'home')} style={{fontWeight:800, fontSize:18}}>{profile.name}</a>
         <nav style={{display:'flex', gap:6}}>
-          {[
-            {to:'/', label:'Home'},
-            {to:'/about', label:'About'},
-            {to:'/projects', label:'Projects'},
-            {to:'/experience', label:'Experience'},
-            {to:'/contact', label:'Contact'}
-          ].map(item => (
-            <NavLink key={item.to} to={item.to} end style={({isActive}) => ({
-              ...linkStyle, textDecoration:'none', color:'#111827', ...(isActive?activeStyle:{})
-            })}>{item.label}</NavLink>
+          {SECTIONS.map(s => (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              onClick={(e)=>onJump(e, s.id)}
+              style={linkStyle}
+              // 以網址 hash 簡單判斷高亮；需要更精準可換 IntersectionObserver
+              className={typeof window !== 'undefined' && window.location.hash === `#${s.id}` ? 'active-nav' : ''}
+            >
+              {s.label}
+            </a>
           ))}
         </nav>
       </div>
