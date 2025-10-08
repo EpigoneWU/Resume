@@ -1,9 +1,9 @@
 export const profile = {
-  name: "(Epigone) Chin-Wei, Wu",
+  name: "Chin-Wei, Wu (Epigone)",
   headline: "Healthcare Manager · Health Informatics · Software Development",
   location: "Brisbane, QLD, Australia",
   email: "epigonewu@gmail.com",
-  phone: "+61 403356265",
+  phone: "(+61)403356265; (+886)960690455",
   github: "https://github.com/EpigoneWU?tab=repositories",
   summary: `Multidisciplinary professional with a Bachelor’s in Healthcare & Medicine and a Master’s in IT from QUT. Skilled in health informatics, software development, and data analysis with experience in building digital solutions for healthcare and well-being. Strong background in clinical workflows, patient-centered technologies, and IT project management. Seeking to contribute to hospital IT systems, EHR implementation, or digital health innovation in Australia.`,
   education: [
@@ -59,3 +59,20 @@ export const profile = {
     }
   ]
 };
+
+export const projects = [
+  {
+    title: 'Portfolio Website',
+    description: 'A personal website built with React + TypeScript.',
+    tech: ['React', 'TypeScript', 'Tailwind'],
+    image: '/images/profolio 2.jpeg', // ✅ 直接使用 public 中的相對路徑
+    link: 'https://epigonewu.github.io/Resume/'
+  },
+  {
+    title: 'Dala App Prototype',
+    description: 'UX redesign for a wellbeing app.',
+    tech: ['Figma', 'UX Research'],
+    image: '/images/profolio 2.jpeg',
+    link: '#'
+  }
+];
